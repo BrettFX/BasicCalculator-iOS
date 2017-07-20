@@ -10,6 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let CLEAR_BUTTON:Int = 11
+    let SIGN_BUTTON:Int = 12
+    let PERCENT_BUTTON:Int = 13
+    let DIVIDE_BUTTON:Int = 14
+    let MULTIPLY_BUTTON:Int = 15
+    let SUBTRACT_BUTTON:Int = 16
+    let ADD_BUTTON:Int = 17
+    let EQUALS_BUTTON:Int = 18
+    let DECIMAL_BUTTON:Int = 19
+    
     var num:Double = 0
     
     @IBOutlet weak var label: UILabel!
