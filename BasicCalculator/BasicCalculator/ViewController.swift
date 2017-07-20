@@ -10,10 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var num:Double = 0
+    
     @IBOutlet weak var label: UILabel!
     
     @IBAction func numbers(_ sender: UIButton) {
         label.text = label.text! == "0" ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
+        num = Double(label.text!)!
+    }
+    
+    
+    @IBAction func functionButtons(_ sender: UIButton) {
+        
     }
 
     override func viewDidLoad() {
