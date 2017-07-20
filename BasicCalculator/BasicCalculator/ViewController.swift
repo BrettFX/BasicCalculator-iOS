@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     let SUBTRACT_OPERATION: String = "-"
     let DIVIDE_OPERATION: String = "/"
     let MULTIPLY_OPERATION: String = "*"
-    let PERCENT_OPERATION: String = "%"
-    let DECIMAL_OPERATION: String = "."
     
     var num: Double = 0
     var mem: Double = 0
@@ -68,17 +66,18 @@ class ViewController: UIViewController {
                 break
                 
             case PERCENT_BUTTON:
-                operation = PERCENT_OPERATION
-                
-                if(label.text != "0"){
-                    num /= 100
-                    label.text = String(num)
-                }
+                num /= 100
+                label.text = String(num)
                 
                 break
                 
             case DECIMAL_BUTTON:
-                operation = DECIMAL_OPERATION
+                let hasDecimal: Bool = (label.text?.contains("."))!
+                
+                if (!hasDecimal){
+                    label.text! += "."
+                }
+                
                 break
                 
             default:
@@ -108,6 +107,7 @@ class ViewController: UIViewController {
         }else if(sender.tag == CLEAR_BUTTON){
             label.text = "0"
             operation = ""
+            unselectFuncButtons()
         }
     }
     
