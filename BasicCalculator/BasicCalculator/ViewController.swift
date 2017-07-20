@@ -53,57 +53,57 @@ class ViewController: UIViewController {
             switch(sender.tag){
             case ADD_BUTTON:
                 operationChosen(operation: ADD_OPERATION, sender: sender)
-                break;
+                break
                 
             case SUBTRACT_BUTTON:
                 operationChosen(operation: SUBTRACT_OPERATION, sender: sender)
-                break;
+                break
                 
             case MULTIPLY_BUTTON:
                 operationChosen(operation: MULTIPLY_OPERATION, sender: sender)
-                break;
+                break
                 
             case DIVIDE_BUTTON:
                 operationChosen(operation: DIVIDE_OPERATION, sender: sender)
-                break;
+                break
                 
             case PERCENT_BUTTON:
                 operation = PERCENT_OPERATION
-                break;
+                
+                if(label.text != "0"){
+                    num /= 100
+                    label.text = String(num)
+                }
+                
+                break
                 
             case DECIMAL_BUTTON:
                 operation = DECIMAL_OPERATION
-                break;
+                break
                 
             default:
-                break;
+                break
             }
         }else if(sender.tag == EQUALS_BUTTON){
             switch(operation){
             case ADD_OPERATION:
                 label.text = String(mem + num)
-                break;
+                break
                 
             case SUBTRACT_OPERATION:
                 label.text = String(mem - num)
-                break;
+                break
                 
             case MULTIPLY_OPERATION:
                 label.text = String(mem * num)
-                break;
+                break
             
             case DIVIDE_OPERATION:
                 label.text = (num != 0) ? String(mem / num) : "Error"
-                break;
-                
-            case PERCENT_OPERATION:
-                break;
-                
-            case DECIMAL_OPERATION:
-                break;
+                break
                 
             default:
-                break;
+                break
             }
         }else if(sender.tag == CLEAR_BUTTON){
             label.text = "0"
