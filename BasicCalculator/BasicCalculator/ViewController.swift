@@ -20,7 +20,15 @@ class ViewController: UIViewController {
     let EQUALS_BUTTON:Int = 18
     let DECIMAL_BUTTON:Int = 19
     
+    let ADD_OPERATION:String = "+"
+    let SUBTRACT_OPERATION:String = "-"
+    let DIVIDE_OPERATION:String = "/"
+    let MULTIPLY_OPERATION:String = "*"
+    let PERCENT_OPERATION:String = "%"
+    let DECIMAL_OPERATION:String = "."
+    
     var num:Double = 0
+    var operation:String = ""
     
     @IBOutlet weak var label: UILabel!
     
@@ -31,7 +39,63 @@ class ViewController: UIViewController {
     
     
     @IBAction func functionButtons(_ sender: UIButton) {
-        
+        //Handles add, subtract, multiply, subtract, percent, sign, and decimal function buttons
+        if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
+            switch(sender.tag){
+            case ADD_BUTTON:
+                operation = ADD_OPERATION
+                break;
+                
+            case SUBTRACT_BUTTON:
+                operation = SUBTRACT_OPERATION
+                break;
+                
+            case MULTIPLY_BUTTON:
+                operation = MULTIPLY_OPERATION
+                break;
+                
+            case DIVIDE_BUTTON:
+                operation = DIVIDE_OPERATION
+                break;
+                
+            case PERCENT_BUTTON:
+                operation = PERCENT_OPERATION
+                break;
+                
+            case DECIMAL_BUTTON:
+                operation = DECIMAL_OPERATION
+                break;
+                
+            default:
+                break;
+            }
+        }else if(sender.tag == EQUALS_BUTTON){
+            switch(operation){
+            case ADD_OPERATION:
+                break;
+                
+            case SUBTRACT_OPERATION:
+                break;
+                
+            case MULTIPLY_OPERATION:
+                break;
+            
+            case DIVIDE_OPERATION:
+                break;
+                
+            case PERCENT_OPERATION:
+                break;
+                
+            case DECIMAL_OPERATION:
+                break;
+                
+            default:
+                break;
+            }
+        }else if(sender.tag == CLEAR_BUTTON){
+            label.text = "0"
+            operation = ""
+        }
     }
 
     override func viewDidLoad() {
