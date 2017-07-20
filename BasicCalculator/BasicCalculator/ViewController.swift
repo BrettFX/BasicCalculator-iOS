@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         label.text = (label.text! == "0" || needSecondNum) ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
         num = Double(label.text!)!
         needSecondNum = false
+        unselectFuncButtons()
     }
     
     
@@ -114,12 +115,16 @@ class ViewController: UIViewController {
         self.operation = operation
         mem = Double(label.text!)!
         needSecondNum = true
-        btnAdd.layer.borderWidth = 1.0
-        btnSubtract.layer.borderWidth = 1.0
-        btnMultiply.layer.borderWidth = 1.0
-        btnDivide.layer.borderWidth = 1.0
+        unselectFuncButtons()
         sender.layer.borderWidth = 2.0
         
+    }
+    
+    private func unselectFuncButtons() -> Void{
+        btnAdd.layer.borderWidth = 0.0
+        btnSubtract.layer.borderWidth = 0.0
+        btnMultiply.layer.borderWidth = 0.0
+        btnDivide.layer.borderWidth = 0.0
     }
 
     override func viewDidLoad() {
