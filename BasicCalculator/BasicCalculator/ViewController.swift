@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     @IBAction func numbers(_ sender: UIButton) {
-        label.text = label.text! == "0" ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
+        label.text = (label.text! == "0" || operation != "") ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
         num = Double(label.text!)!
     }
     
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
             switch(sender.tag){
             case ADD_BUTTON:
+                sender.setImage(UIImage(named: "Checked"), for: .selected)
                 operation = ADD_OPERATION
                 break;
                 
@@ -72,6 +73,7 @@ class ViewController: UIViewController {
         }else if(sender.tag == EQUALS_BUTTON){
             switch(operation){
             case ADD_OPERATION:
+                
                 break;
                 
             case SUBTRACT_OPERATION:
