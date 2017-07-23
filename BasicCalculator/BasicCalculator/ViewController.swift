@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     @IBAction func numbers(_ sender: UIButton) {
-        
+        label.text = label.text! == "0" ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
     }
 
     override func viewDidLoad() {
@@ -25,7 +25,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
