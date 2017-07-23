@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     let DECIMAL_OPERATION:String = "."
     
     var num:Double = 0
+    var mem:Double = 0
     var operation:String = ""
     var needSecondNum:Bool = false
     
@@ -47,21 +48,25 @@ class ViewController: UIViewController {
             case ADD_BUTTON:
                 sender.setImage(UIImage(named: "Checked"), for: .selected)
                 operation = ADD_OPERATION
+                mem = Double(label.text!)!
                 needSecondNum = true
                 break;
                 
             case SUBTRACT_BUTTON:
                 operation = SUBTRACT_OPERATION
+                mem = Double(label.text!)!
                 needSecondNum = true
                 break;
                 
             case MULTIPLY_BUTTON:
                 operation = MULTIPLY_OPERATION
+                mem = Double(label.text!)!
                 needSecondNum = true
                 break;
                 
             case DIVIDE_BUTTON:
                 operation = DIVIDE_OPERATION
+                mem = Double(label.text!)!
                 needSecondNum = true
                 break;
                 
@@ -79,7 +84,7 @@ class ViewController: UIViewController {
         }else if(sender.tag == EQUALS_BUTTON){
             switch(operation){
             case ADD_OPERATION:
-                
+                label.text = String(mem + num)
                 break;
                 
             case SUBTRACT_OPERATION:
