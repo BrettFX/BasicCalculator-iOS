@@ -29,12 +29,14 @@ class ViewController: UIViewController {
     
     var num:Double = 0
     var operation:String = ""
+    var needSecondNum:Bool = false
     
     @IBOutlet weak var label: UILabel!
     
     @IBAction func numbers(_ sender: UIButton) {
-        label.text = (label.text! == "0" || operation != "") ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
+        label.text = (label.text! == "0" || needSecondNum) ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
         num = Double(label.text!)!
+        needSecondNum = false
     }
     
     
@@ -45,18 +47,22 @@ class ViewController: UIViewController {
             case ADD_BUTTON:
                 sender.setImage(UIImage(named: "Checked"), for: .selected)
                 operation = ADD_OPERATION
+                needSecondNum = true
                 break;
                 
             case SUBTRACT_BUTTON:
                 operation = SUBTRACT_OPERATION
+                needSecondNum = true
                 break;
                 
             case MULTIPLY_BUTTON:
                 operation = MULTIPLY_OPERATION
+                needSecondNum = true
                 break;
                 
             case DIVIDE_BUTTON:
                 operation = DIVIDE_OPERATION
+                needSecondNum = true
                 break;
                 
             case PERCENT_BUTTON:
