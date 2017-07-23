@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
             switch(sender.tag){
             case ADD_BUTTON:
-                sender.setImage(UIImage(named: "Checked"), for: .selected)
+                sender.layer.borderWidth = 2.0
                 operation = ADD_OPERATION
                 mem = Double(label.text!)!
                 needSecondNum = true
