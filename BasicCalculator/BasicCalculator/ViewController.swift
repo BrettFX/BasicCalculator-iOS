@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         }
         
         if(btnClear.titleLabel!.text != CLEAR){
-            btnClear.titleLabel!.text = ALL_CLEAR
+            btnClear.setTitle(CLEAR, for: .normal)
         }
         
         num = Double(label.text!)!
@@ -182,7 +182,7 @@ class ViewController: UIViewController {
                     break
                 }
                 
-                sender.titleLabel!.text = ALL_CLEAR
+                sender.setTitle(ALL_CLEAR, for: .normal)
             }
         }
     }
