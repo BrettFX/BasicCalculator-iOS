@@ -145,10 +145,15 @@ class ViewController: UIViewController {
         btnMultiply.layer.borderWidth = 0.0
         btnDivide.layer.borderWidth = 0.0
     }
+    
+    private func appendToDisplay(text: String) -> Void{
+        if((label.text?.characters.count)! < 12){
+            label.text! += text
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
