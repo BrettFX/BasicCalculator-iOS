@@ -80,6 +80,10 @@ class ViewController: UIViewController {
                 
                 break
                 
+            case SIGN_BUTTON:
+                num *= -1
+                label.text = String(num)
+                
             default:
                 break
             }

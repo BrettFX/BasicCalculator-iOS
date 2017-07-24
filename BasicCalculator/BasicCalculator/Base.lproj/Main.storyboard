@@ -234,7 +234,7 @@
                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="functionButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8pr-9M-Tl7"/>
+                                    <action selector="functionButtons:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nl6-dh-ODS"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8p-PM-Ym1">
