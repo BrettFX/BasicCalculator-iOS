@@ -105,7 +105,11 @@ class ViewController: UIViewController {
                 break
             }
 				
-				num = Double(label.text!)!
+            if(operation != ""){
+                num = Double(label.text!)!
+                needSecondNum = true
+            }
+            
         }else if(sender.tag == CLEAR_BUTTON){
             label.text = "0"
             operation = ""
