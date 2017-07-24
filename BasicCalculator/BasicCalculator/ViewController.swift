@@ -74,15 +74,22 @@ class ViewController: UIViewController {
             case DECIMAL_BUTTON:
                 let hasDecimal: Bool = (label.text?.contains("."))!
                 
-                if (!hasDecimal){
+                if(needSecondNum){
+                    label.text! = "0."
+                    needSecondNum = false
+                }else if(!hasDecimal){
                     label.text! += "."
                 }
                 
                 break
                 
             case SIGN_BUTTON:
-                num *= -1
-                label.text = String(num)
+                if(label.text != "0"){
+                    num *= -1
+                    label.text = String(num)
+                }
+                
+                break
                 
             default:
                 break
@@ -116,6 +123,8 @@ class ViewController: UIViewController {
             
         }else if(sender.tag == CLEAR_BUTTON){
             label.text = "0"
+            num = 0
+            mem = 0
             operation = ""
             unselectFuncButtons()
         }
