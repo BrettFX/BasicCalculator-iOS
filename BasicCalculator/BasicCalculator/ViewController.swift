@@ -104,6 +104,8 @@ class ViewController: UIViewController {
             default:
                 break
             }
+				
+				num = Double(label.text!)!
         }else if(sender.tag == CLEAR_BUTTON){
             label.text = "0"
             operation = ""
