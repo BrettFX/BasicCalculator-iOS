@@ -38,7 +38,12 @@ class ViewController: UIViewController {
     
     
     @IBAction func numbers(_ sender: UIButton) {
-        label.text = (label.text! == "0" || needSecondNum) ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
+        if(label.text! == "0" || needSecondNum){
+            label.text = String(sender.tag - 1)
+        }else{
+            appendToDisplay(text: String(sender.tag - 1))
+        }
+        
         num = Double(label.text!)!
         needSecondNum = false
         unselectFuncButtons()
@@ -78,7 +83,7 @@ class ViewController: UIViewController {
                     label.text! = "0."
                     needSecondNum = false
                 }else if(!hasDecimal){
-                    label.text! += "."
+                    appendToDisplay(text: ".")
                 }
                 
                 break
@@ -147,7 +152,7 @@ class ViewController: UIViewController {
     }
     
     private func appendToDisplay(text: String) -> Void{
-        if((label.text?.characters.count)! < 12){
+        if((label.text?.characters.count)! < 11){
             label.text! += text
         }
     }
