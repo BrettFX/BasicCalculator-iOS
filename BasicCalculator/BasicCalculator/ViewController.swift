@@ -10,29 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let CLEAR_BUTTON:Int = 11
-    let SIGN_BUTTON:Int = 12
-    let PERCENT_BUTTON:Int = 13
-    let DIVIDE_BUTTON:Int = 14
-    let MULTIPLY_BUTTON:Int = 15
-    let SUBTRACT_BUTTON:Int = 16
-    let ADD_BUTTON:Int = 17
-    let EQUALS_BUTTON:Int = 18
-    let DECIMAL_BUTTON:Int = 19
+    let CLEAR_BUTTON: Int = 11
+    let SIGN_BUTTON: Int = 12
+    let PERCENT_BUTTON: Int = 13
+    let DIVIDE_BUTTON: Int = 14
+    let MULTIPLY_BUTTON: Int = 15
+    let SUBTRACT_BUTTON: Int = 16
+    let ADD_BUTTON: Int = 17
+    let EQUALS_BUTTON: Int = 18
+    let DECIMAL_BUTTON: Int = 19
     
-    let ADD_OPERATION:String = "+"
-    let SUBTRACT_OPERATION:String = "-"
-    let DIVIDE_OPERATION:String = "/"
-    let MULTIPLY_OPERATION:String = "*"
-    let PERCENT_OPERATION:String = "%"
-    let DECIMAL_OPERATION:String = "."
+    let ADD_OPERATION: String = "+"
+    let SUBTRACT_OPERATION: String = "-"
+    let DIVIDE_OPERATION: String = "/"
+    let MULTIPLY_OPERATION: String = "*"
+    let PERCENT_OPERATION: String = "%"
+    let DECIMAL_OPERATION: String = "."
     
-    var num:Double = 0
-    var mem:Double = 0
+    var num: Double = 0
+    var mem: Double = 0
     var operation:String = ""
     var needSecondNum:Bool = false
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var btnDivide: UIButton!
+    @IBOutlet weak var btnMultiply: UIButton!
+    @IBOutlet weak var btnSubtract: UIButton!
+    @IBOutlet weak var btnAdd: UIButton!    
+    
     
     @IBAction func numbers(_ sender: UIButton) {
         label.text = (label.text! == "0" || needSecondNum) ? String(sender.tag - 1) : label.text! + String(sender.tag - 1)
@@ -46,28 +51,19 @@ class ViewController: UIViewController {
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
             switch(sender.tag){
             case ADD_BUTTON:
-                sender.layer.borderWidth = 2.0
-                operation = ADD_OPERATION
-                mem = Double(label.text!)!
-                needSecondNum = true
+                operationChosen(operation: ADD_OPERATION, sender: sender)
                 break;
                 
             case SUBTRACT_BUTTON:
-                operation = SUBTRACT_OPERATION
-                mem = Double(label.text!)!
-                needSecondNum = true
+                operationChosen(operation: SUBTRACT_OPERATION, sender: sender)
                 break;
                 
             case MULTIPLY_BUTTON:
-                operation = MULTIPLY_OPERATION
-                mem = Double(label.text!)!
-                needSecondNum = true
+                operationChosen(operation: MULTIPLY_OPERATION, sender: sender)
                 break;
                 
             case DIVIDE_BUTTON:
-                operation = DIVIDE_OPERATION
-                mem = Double(label.text!)!
-                needSecondNum = true
+                operationChosen(operation: DIVIDE_OPERATION, sender: sender)
                 break;
                 
             case PERCENT_BUTTON:
@@ -88,12 +84,15 @@ class ViewController: UIViewController {
                 break;
                 
             case SUBTRACT_OPERATION:
+                label.text = String(mem - num)
                 break;
                 
             case MULTIPLY_OPERATION:
+                label.text = String(mem * num)
                 break;
             
             case DIVIDE_OPERATION:
+                label.text = (num != 0) ? String(mem / num) : "Error"
                 break;
                 
             case PERCENT_OPERATION:
@@ -109,6 +108,18 @@ class ViewController: UIViewController {
             label.text = "0"
             operation = ""
         }
+    }
+    
+    private func operationChosen(operation: String, sender: UIButton) -> Void{
+        self.operation = operation
+        mem = Double(label.text!)!
+        needSecondNum = true
+        btnAdd.layer.borderWidth = 1.0
+        btnSubtract.layer.borderWidth = 1.0
+        btnMultiply.layer.borderWidth = 1.0
+        btnDivide.layer.borderWidth = 1.0
+        sender.layer.borderWidth = 2.0
+        
     }
 
     override func viewDidLoad() {

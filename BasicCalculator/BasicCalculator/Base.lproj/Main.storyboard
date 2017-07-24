@@ -257,6 +257,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="btnAdd" destination="1cX-zY-rgr" id="yBf-ze-IsW"/>
+                        <outlet property="btnDivide" destination="MUc-eu-8KK" id="ctF-q2-hum"/>
+                        <outlet property="btnMultiply" destination="kti-Mv-HUc" id="JBs-aG-3e2"/>
+                        <outlet property="btnSubtract" destination="u6M-lY-ctZ" id="XSi-WI-qQ3"/>
                         <outlet property="label" destination="I8p-PM-Ym1" id="fUw-Fy-b3M"/>
                     </connections>
                 </viewController>
