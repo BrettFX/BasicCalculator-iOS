@@ -135,8 +135,12 @@ class ViewController: UIViewController {
             performNecessaryParsing(arithmetic: arithmetic)
 				
             if(operation != ""){
+                if(!needSecondNum){
+                    mem = num
+                    needSecondNum = true
+                }
+                
                 num = Double(label.text!)!
-                needSecondNum = true
             }
             
         }else if(sender.tag == CLEAR_BUTTON){
