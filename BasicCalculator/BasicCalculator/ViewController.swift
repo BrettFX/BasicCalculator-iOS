@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     let ALL_CLEAR: String = "AC"
     let CLEAR: String = "C"
     
+    let COLORS = [UIColor](arrayLiteral: UIColor.blue, UIColor.green, UIColor.red, UIColor.orange)
+    var currentColor: Int = 0
+    
     var num: Double = 0
     var mem: Double = 0
     var operation:String = ""
@@ -233,7 +236,9 @@ class ViewController: UIViewController {
     }
     
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
-        print("You tapped the label")
+        btnDivide.backgroundColor = COLORS[currentColor]
+        
+        currentColor = currentColor > COLORS.count ? 0 : currentColor + 1
     }
 
     override func didReceiveMemoryWarning() {
