@@ -91,7 +91,7 @@ class ViewController: UIViewController {
             case SIGN_BUTTON:
                 if(label.text != "0"){
                     num *= -1
-                    label.text = String(num)
+                    performNecessaryParsing(arithmetic: num)
                 }
                 
                 break
@@ -130,11 +130,7 @@ class ViewController: UIViewController {
                 break
             }
             
-            //Determine if the number is just an integer, i.e., don't display 7 as 7.0
-            let trunc: Int = (arithmetic - floor(arithmetic) == 0) ? Int(arithmetic) : 0
-            
-            //If the truncation flag is set to 0 then the arithmetic has a decimal
-            label.text = trunc == 0 ? String(arithmetic) : String(trunc)
+            performNecessaryParsing(arithmetic: arithmetic)
 				
             if(operation != ""){
                 num = Double(label.text!)!
@@ -150,7 +146,13 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    private func performNecessaryParsing(arithmetic: Double) -> Void{
+        //Determine if the number is just an integer, i.e., don't display 7 as 7.0
+        let trunc: Int = (arithmetic - floor(arithmetic) == 0) ? Int(arithmetic) : 0
+        
+        //If the truncation flag is set to 0 then the arithmetic has a decimal
+        label.text = trunc == 0 ? String(arithmetic) : String(trunc)
+    }
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
         self.operation = operation
