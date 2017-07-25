@@ -100,26 +100,41 @@ class ViewController: UIViewController {
                 break
             }
         }else if(sender.tag == EQUALS_BUTTON){
+            
+            var arithmetic: Double = 0
+            
             switch(operation){
             case ADD_OPERATION:
-                label.text = String(mem + num)
+                arithmetic = mem + num
                 break
                 
             case SUBTRACT_OPERATION:
-                label.text = String(mem - num)
+                arithmetic = mem - num
                 break
                 
             case MULTIPLY_OPERATION:
-                label.text = String(mem * num)
+                arithmetic = mem * num
                 break
             
             case DIVIDE_OPERATION:
-                label.text = (num != 0) ? String(mem / num) : "Error"
+                if(num != 0){
+                    arithmetic = mem / num
+                }else{
+                    label.text = "Error"
+                    return
+                }
+                
                 break
                 
             default:
                 break
             }
+            
+            //Determine if the number is just an integer, i.e., don't display 7 as 7.0
+            let trunc: Int = (arithmetic - floor(arithmetic) == 0) ? Int(arithmetic) : 0
+            
+            //If the truncation flag is set to 0 then the arithmetic has a decimal
+            label.text = trunc == 0 ? String(arithmetic) : String(trunc)
 				
             if(operation != ""){
                 num = Double(label.text!)!
@@ -134,6 +149,8 @@ class ViewController: UIViewController {
             unselectFuncButtons()
         }
     }
+    
+    
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
         self.operation = operation
