@@ -58,6 +58,8 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
     @IBAction func functionButtons(_ sender: UIButton) {
         //Handles add, subtract, multiply, subtract, percent, sign, and decimal function buttons
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
@@ -221,6 +223,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        label.isUserInteractionEnabled = true
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self, action: #selector(labelTapped))
+        
+        label.addGestureRecognizer(tap)
+        tap.delegate = self as? UIGestureRecognizerDelegate
+    }
+    
+    @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
+        print("You tapped the label")
     }
 
     override func didReceiveMemoryWarning() {
