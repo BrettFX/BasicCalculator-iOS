@@ -181,6 +181,8 @@ class ViewController: UIViewController {
                 default:
                     break
                 }
+                
+                sender.titleLabel!.text = ALL_CLEAR
             }
         }
     }
