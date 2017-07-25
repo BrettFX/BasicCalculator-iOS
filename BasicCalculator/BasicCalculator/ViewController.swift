@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     let DIVIDE_OPERATION: String = "/"
     let MULTIPLY_OPERATION: String = "*"
     
+    let ERROR_MESSAGE: String = "Error"
+    
     var num: Double = 0
     var mem: Double = 0
     var operation:String = ""
@@ -38,7 +40,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func numbers(_ sender: UIButton) {
-        if(label.text! == "0" || needSecondNum){
+        if(label.text! == "0" || label.text! == ERROR_MESSAGE || needSecondNum){
             label.text = String(sender.tag - 1)
         }else{
             appendToDisplay(text: String(sender.tag - 1))
@@ -79,7 +81,7 @@ class ViewController: UIViewController {
             case DECIMAL_BUTTON:
                 let hasDecimal: Bool = (label.text?.contains("."))!
                 
-                if(needSecondNum){
+                if(needSecondNum || label.text! == ERROR_MESSAGE){
                     label.text! = "0."
                     needSecondNum = false
                 }else if(!hasDecimal){
@@ -120,7 +122,7 @@ class ViewController: UIViewController {
                 if(num != 0){
                     arithmetic = mem / num
                 }else{
-                    label.text = "Error"
+                    label.text = ERROR_MESSAGE
                     return
                 }
                 
@@ -142,6 +144,7 @@ class ViewController: UIViewController {
             num = 0
             mem = 0
             operation = ""
+            needSecondNum = false
             unselectFuncButtons()
         }
     }
