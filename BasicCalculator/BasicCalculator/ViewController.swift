@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     let CLEAR: String = "C"
     
     let COLORS = [UIColor](arrayLiteral: UIColor.blue, UIColor.green, UIColor.red, UIColor.orange)
-    var currentColor: Int = 0
+    var currentColor: Int = -1
     
     var num: Double = 0
     var mem: Double = 0
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnMultiply: UIButton!
     @IBOutlet weak var btnSubtract: UIButton!
     @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnEquals: UIButton!
     @IBOutlet weak var btnClear: UIButton!
     
     @IBAction func numbers(_ sender: UIButton) {
@@ -236,9 +237,12 @@ class ViewController: UIViewController {
     }
     
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
+        currentColor = (currentColor < (COLORS.count - 1)) ? currentColor + 1 : 0
         btnDivide.backgroundColor = COLORS[currentColor]
-        
-        currentColor = currentColor > COLORS.count ? 0 : currentColor + 1
+        btnMultiply.backgroundColor = COLORS[currentColor]
+        btnSubtract.backgroundColor = COLORS[currentColor]
+        btnAdd.backgroundColor = COLORS[currentColor]
+        btnEquals.backgroundColor = COLORS[currentColor]
     }
 
     override func didReceiveMemoryWarning() {
