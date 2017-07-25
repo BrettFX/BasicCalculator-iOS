@@ -107,6 +107,9 @@ class ViewController: UIViewController {
             default:
                 break
             }
+            
+            mem = Double(label.text!)!
+            
         }else if(sender.tag == EQUALS_BUTTON){
             
             var arithmetic: Double = 0
@@ -197,7 +200,6 @@ class ViewController: UIViewController {
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
         self.operation = operation
-        mem = Double(label.text!)!
         needSecondNum = true
         unselectFuncButtons()
         sender.layer.borderWidth = 2.0
