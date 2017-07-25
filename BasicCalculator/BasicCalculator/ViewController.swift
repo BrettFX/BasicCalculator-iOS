@@ -74,7 +74,7 @@ class ViewController: UIViewController {
                 
             case PERCENT_BUTTON:
                 num /= 100
-                label.text = String(num)
+                performNecessaryParsing(arithmetic: num)
                 
                 break
                 
@@ -155,10 +155,10 @@ class ViewController: UIViewController {
     
     private func performNecessaryParsing(arithmetic: Double) -> Void{
         //Determine if the number is just an integer, i.e., don't display 7 as 7.0
-        let trunc: Int = ((arithmetic - floor(arithmetic) == 0.0) || arithmetic == 0.0) ? Int(arithmetic) : 0
+        let trunc: Int = (arithmetic - floor(arithmetic) == 0.0) ? Int(arithmetic) : 0
         
         //If the truncation flag is set to 0 then the arithmetic has a decimal
-        label.text = trunc == 0 ? String(arithmetic) : String(trunc)
+        label.text = trunc == 0 && arithmetic != 0.0 ? String(arithmetic) : String(trunc)
     }
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
