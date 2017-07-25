@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     let MULTIPLY_OPERATION: String = "*"
     
     let ERROR_MESSAGE: String = "Error"
+    let ALL_CLEAR: String = "AC"
+    let CLEAR: String = "C"
     
     var num: Double = 0
     var mem: Double = 0
@@ -36,14 +38,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnDivide: UIButton!
     @IBOutlet weak var btnMultiply: UIButton!
     @IBOutlet weak var btnSubtract: UIButton!
-    @IBOutlet weak var btnAdd: UIButton!    
-    
+    @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var btnClear: UIButton!
     
     @IBAction func numbers(_ sender: UIButton) {
         if(label.text! == "0" || label.text! == ERROR_MESSAGE || needSecondNum){
             label.text = String(sender.tag - 1)
         }else{
             appendToDisplay(text: String(sender.tag - 1))
+        }
+        
+        if(btnClear.titleLabel!.text != CLEAR){
+            btnClear.titleLabel!.text = ALL_CLEAR
         }
         
         num = Double(label.text!)!
@@ -144,12 +150,38 @@ class ViewController: UIViewController {
             }
             
         }else if(sender.tag == CLEAR_BUTTON){
-            label.text = "0"
-            num = 0
-            mem = 0
-            operation = ""
-            needSecondNum = false
-            unselectFuncButtons()
+            if(sender.titleLabel!.text == ALL_CLEAR){
+                label.text = "0"
+                num = 0
+                mem = 0
+                operation = ""
+                needSecondNum = false
+                unselectFuncButtons()
+            }else if(sender.titleLabel!.text == CLEAR){
+                label.text = "0"
+                num = 0
+                
+                switch(operation){
+                case ADD_OPERATION:
+                    operationChosen(operation: operation, sender: btnAdd)
+                    break
+                    
+                case SUBTRACT_OPERATION:
+                    operationChosen(operation: operation, sender: btnSubtract)
+                    break
+                    
+                case MULTIPLY_OPERATION:
+                    operationChosen(operation: operation, sender: btnMultiply)
+                    break
+                    
+                case DIVIDE_OPERATION:
+                    operationChosen(operation: operation, sender: btnDivide)
+                    break
+                    
+                default:
+                    break
+                }
+            }
         }
     }
     
