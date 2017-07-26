@@ -160,40 +160,50 @@ class ViewController: UIViewController {
             
         }else if(sender.tag == CLEAR_BUTTON){
             if(sender.titleLabel!.text == ALL_CLEAR){
-                label.text = "0"
-                num = 0
-                mem = 0
-                operation = ""
-                needSecondNum = false
-                unselectFuncButtons()
+                clearAll()
             }else if(sender.titleLabel!.text == CLEAR){
-                label.text = "0"
-                num = 0
                 
-                switch(operation){
-                case ADD_OPERATION:
-                    operationChosen(operation: operation, sender: btnAdd)
-                    break
+                //Determine if the equals button was just clicked
+                if(mem != num){
+                    clearAll()
+                }else{
+                    label.text = "0"
+                    num = 0
                     
-                case SUBTRACT_OPERATION:
-                    operationChosen(operation: operation, sender: btnSubtract)
-                    break
-                    
-                case MULTIPLY_OPERATION:
-                    operationChosen(operation: operation, sender: btnMultiply)
-                    break
-                    
-                case DIVIDE_OPERATION:
-                    operationChosen(operation: operation, sender: btnDivide)
-                    break
-                    
-                default:
-                    break
+                    switch(operation){
+                    case ADD_OPERATION:
+                        operationChosen(operation: operation, sender: btnAdd)
+                        break
+                        
+                    case SUBTRACT_OPERATION:
+                        operationChosen(operation: operation, sender: btnSubtract)
+                        break
+                        
+                    case MULTIPLY_OPERATION:
+                        operationChosen(operation: operation, sender: btnMultiply)
+                        break
+                        
+                    case DIVIDE_OPERATION:
+                        operationChosen(operation: operation, sender: btnDivide)
+                        break
+                        
+                    default:
+                        break
+                    }
                 }
                 
                 sender.setTitle(ALL_CLEAR, for: .normal)
             }
         }
+    }
+    
+    private func clearAll() -> Void{
+        label.text = "0"
+        num = 0
+        mem = 0
+        operation = ""
+        needSecondNum = false
+        unselectFuncButtons()
     }
     
     private func performNecessaryParsing(arithmetic: Double) -> Void{
