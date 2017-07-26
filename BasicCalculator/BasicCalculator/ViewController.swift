@@ -164,7 +164,7 @@ class ViewController: UIViewController {
             }else if(sender.titleLabel!.text == CLEAR){
                 
                 //Determine if the equals button was just clicked
-                if(mem != num){
+                if(needSecondNum){
                     clearAll()
                 }else{
                     label.text = "0"
