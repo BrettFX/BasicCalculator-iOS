@@ -248,11 +248,23 @@ class ViewController: UIViewController {
     
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
         currentColor = (currentColor < (COLORS.count - 1)) ? currentColor + 1 : 0
+        
+        let foreground: UIColor = (currentColor == 1 || currentColor == 2) ? UIColor.black : UIColor.white
+        
         btnDivide.backgroundColor = COLORS[currentColor]
+        btnDivide.setTitleColor(foreground, for: .normal)
+        
         btnMultiply.backgroundColor = COLORS[currentColor]
+        btnMultiply.setTitleColor(foreground, for: .normal)
+        
         btnSubtract.backgroundColor = COLORS[currentColor]
+        btnSubtract.setTitleColor(foreground, for: .normal)
+        
         btnAdd.backgroundColor = COLORS[currentColor]
+        btnAdd.setTitleColor(foreground, for: .normal)
+        
         btnEquals.backgroundColor = COLORS[currentColor]
+        btnEquals.setTitleColor(foreground, for: .normal)
     }
 
     override func didReceiveMemoryWarning() {
