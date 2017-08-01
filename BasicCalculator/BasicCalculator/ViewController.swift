@@ -63,9 +63,6 @@ class ViewController: UIViewController {
         unselectFuncButtons()
     }
     
-    
-    
-    
     @IBAction func functionButtons(_ sender: UIButton) {
         //Handles add, subtract, multiply, subtract, percent, sign, and decimal function buttons
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
@@ -217,6 +214,8 @@ class ViewController: UIViewController {
         
         //If the truncation flag is set to 0 then the arithmetic has a decimal
         label.text = trunc == 0 && arithmetic != 0.0 ? String(arithmetic) : String(trunc)
+        
+        formatNumber(numStr: label.text!)
     }
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
@@ -237,6 +236,7 @@ class ViewController: UIViewController {
     private func appendToDisplay(text: String) -> Void{
         if((label.text?.characters.count)! < MAX_CHAR_COUNT){
             label.text! += text
+            formatNumber(numStr: label.text!)
         }
     }
 
@@ -249,8 +249,6 @@ class ViewController: UIViewController {
         
         label.addGestureRecognizer(tap)
         tap.delegate = self as? UIGestureRecognizerDelegate
-        
-        formatNumber(numStr: "3534234.55")
     }
     
     private func formatNumber(numStr: String) -> Void{
