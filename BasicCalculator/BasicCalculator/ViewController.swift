@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let MAX_CHAR_COUNT: Int = 11
+    
     let CLEAR_BUTTON: Int = 11
     let SIGN_BUTTON: Int = 12
     let PERCENT_BUTTON: Int = 13
@@ -233,7 +235,7 @@ class ViewController: UIViewController {
     }
     
     private func appendToDisplay(text: String) -> Void{
-        if((label.text?.characters.count)! < 11){
+        if((label.text?.characters.count)! < MAX_CHAR_COUNT){
             label.text! += text
         }
     }
@@ -247,13 +249,16 @@ class ViewController: UIViewController {
         
         label.addGestureRecognizer(tap)
         tap.delegate = self as? UIGestureRecognizerDelegate
+        
+        formatNumber(numStr: "3534234.55")
     }
     
-    private func formatNumber() -> Void{
-        let numToFmt: NSNumber = 3534234.55
+    private func formatNumber(numStr: String) -> Void{
+        let numDbl: Double = Double(numStr)!
+        let numToFmt: NSNumber = NSNumber(value: numDbl)
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 0
+        formatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
         
         print(formatter.string(from: numToFmt)!)
     }
