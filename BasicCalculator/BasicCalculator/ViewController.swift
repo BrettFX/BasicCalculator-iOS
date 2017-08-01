@@ -114,7 +114,10 @@ class ViewController: UIViewController {
                 break
             }
             
-            mem = Double(label.text!)!
+            if(sender.tag != PERCENT_BUTTON){
+                mem = Double(label.text!)!
+            }
+            
             
         }else if(sender.tag == EQUALS_BUTTON){
             
