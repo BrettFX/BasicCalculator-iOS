@@ -115,7 +115,7 @@ class ViewController: UIViewController {
             }
             
             if(sender.tag != PERCENT_BUTTON){
-                mem = Double(label.text!)!
+                mem = Double(toParseableStr(str: label.text!))!
             }
             
             
@@ -158,7 +158,7 @@ class ViewController: UIViewController {
                     needSecondNum = true
                 }
                 
-                num = Double(label.text!)!
+                num = Double(toParseableStr(str: label.text!))!
             }
             
         }else if(sender.tag == CLEAR_BUTTON){
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
             }else if(sender.titleLabel!.text == CLEAR){
                 
                 //Determine if the equals button was just clicked
-                if(needSecondNum && num == Double(label.text!)){
+                if(needSecondNum && num == Double(toParseableStr(str: label.text!))){
                     clearAll()
                 }else{
                     label.text = "0"
