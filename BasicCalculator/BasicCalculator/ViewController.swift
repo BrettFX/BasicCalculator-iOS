@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
     
@@ -58,9 +59,13 @@ class ViewController: UIViewController {
             btnClear.setTitle(CLEAR, for: .normal)
         }
         
-        num = Double(label.text!)!
+        num = Double(toParseableStr(str: label.text!))!
         needSecondNum = false
         unselectFuncButtons()
+    }
+    
+    private func toParseableStr(str: String) -> String{
+        return str.components(separatedBy: ",").joined(separator: "")
     }
     
     @IBAction func functionButtons(_ sender: UIButton) {
@@ -252,7 +257,7 @@ class ViewController: UIViewController {
     }
     
     private func formatNumber(numStr: String) -> String{
-        let numDbl: Double = Double(numStr)!
+        let numDbl: Double = Double(toParseableStr(str: numStr))!
         let numToFmt: NSNumber = NSNumber(value: numDbl)
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
