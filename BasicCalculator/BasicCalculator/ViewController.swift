@@ -249,6 +249,15 @@ class ViewController: UIViewController {
         tap.delegate = self as? UIGestureRecognizerDelegate
     }
     
+    private func formatNumber() -> Void{
+        let numToFmt: NSNumber = 3534234.55
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        
+        print(formatter.string(from: numToFmt)!)
+    }
+    
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
         currentColor = (currentColor < (COLORS.count - 1)) ? currentColor + 1 : 0
         
