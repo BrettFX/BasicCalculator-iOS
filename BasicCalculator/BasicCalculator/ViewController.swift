@@ -64,10 +64,6 @@ class ViewController: UIViewController {
         unselectFuncButtons()
     }
     
-    private func toParseableStr(str: String) -> String{
-        return str.components(separatedBy: ",").joined(separator: "")
-    }
-    
     @IBAction func functionButtons(_ sender: UIButton) {
         //Handles add, subtract, multiply, subtract, percent, sign, and decimal function buttons
         if(label.text != "" && sender.tag != CLEAR_BUTTON && sender.tag != EQUALS_BUTTON){
@@ -264,6 +260,10 @@ class ViewController: UIViewController {
         formatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
         
         return formatter.string(from: numToFmt)!
+    }
+    
+    private func toParseableStr(str: String) -> String{
+        return str.components(separatedBy: ",").joined(separator: "")
     }
     
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
