@@ -213,9 +213,9 @@ class ViewController: UIViewController {
         let trunc: Int = (arithmetic - floor(arithmetic) == 0.0) ? Int(arithmetic) : 0
         
         //If the truncation flag is set to 0 then the arithmetic has a decimal
-        label.text = trunc == 0 && arithmetic != 0.0 ? String(arithmetic) : String(trunc)
+        let parseStr: String = trunc == 0 && arithmetic != 0.0 ? String(arithmetic) : String(trunc)
         
-        formatNumber(numStr: label.text!)
+        label.text = formatNumber(numStr: parseStr)
     }
     
     private func operationChosen(operation: String, sender: UIButton) -> Void{
@@ -235,8 +235,8 @@ class ViewController: UIViewController {
     
     private func appendToDisplay(text: String) -> Void{
         if((label.text?.characters.count)! < MAX_CHAR_COUNT){
-            label.text! += text
-            formatNumber(numStr: label.text!)
+            let append: String = label.text! + text
+            label.text! = formatNumber(numStr: append)
         }
     }
 
@@ -251,14 +251,14 @@ class ViewController: UIViewController {
         tap.delegate = self as? UIGestureRecognizerDelegate
     }
     
-    private func formatNumber(numStr: String) -> Void{
+    private func formatNumber(numStr: String) -> String{
         let numDbl: Double = Double(numStr)!
         let numToFmt: NSNumber = NSNumber(value: numDbl)
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
         
-        print(formatter.string(from: numToFmt)!)
+        return formatter.string(from: numToFmt)!
     }
     
     @objc private func labelTapped(sender: UITapGestureRecognizer) -> Void{
