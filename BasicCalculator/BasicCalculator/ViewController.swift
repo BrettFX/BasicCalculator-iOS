@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     var operation:String = ""
     var needSecondNum:Bool = false
     
+    var numberFormatter: NumberFormatter
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var btnDivide: UIButton!
     @IBOutlet weak var btnMultiply: UIButton!
@@ -250,16 +252,18 @@ class ViewController: UIViewController {
         
         label.addGestureRecognizer(tap)
         tap.delegate = self as? UIGestureRecognizerDelegate
+        
+        numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT
     }
     
     private func formatNumber(numStr: String) -> String{
         let numDbl: Double = Double(toParseableStr(str: numStr))!
         let numToFmt: NSNumber = NSNumber(value: numDbl)
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
+        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
         
-        return formatter.string(from: numToFmt)!
+        return numberFormatter.string(from: numToFmt)!
     }
     
     private func toParseableStr(str: String) -> String{
