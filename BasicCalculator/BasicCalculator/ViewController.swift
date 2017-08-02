@@ -237,7 +237,7 @@ class ViewController: UIViewController {
     private func appendToDisplay(text: String) -> Void{
         if((label.text?.characters.count)! < MAX_CHAR_COUNT){
             let append: String = label.text! + text
-            label.text! = formatNumber(numStr: append)
+            label.text! = text == "." ? label.text! + text : formatNumber(numStr: append)
         }
     }
 
