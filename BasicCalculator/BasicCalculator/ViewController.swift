@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     var needSecondNum:Bool = false
     var hasDecimal: Bool = false
     
-    var numberFormatter: NumberFormatter
+    var numberFormatter: NumberFormatter? = nil
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var btnDivide: UIButton!
@@ -51,20 +51,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnEquals: UIButton!
     @IBOutlet weak var btnClear: UIButton!
     
-    init() {
-        numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT
+    init(){
+        super.init(nibName: nil, bundle: nil)
+        self.setup()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-        super.init(coder: <#T##NSCoder#>)
+        super.init(coder: aDecoder)
+        self.setup()
+    }
+    
+    private func setup() -> Void{
+        numberFormatter = NumberFormatter()
+        numberFormatter?.numberStyle = .decimal
+        numberFormatter?.maximumFractionDigits = MAX_CHAR_COUNT
     }
     
     @IBAction func numbers(_ sender: UIButton) {
         if(label.text! == "0" || label.text! == ERROR_MESSAGE || needSecondNum){
-            label.text = String(sender.tag - 1)
+            label.text = formatNumber(numStr: String(sender.tag - 1))
         }else{
             appendToDisplay(text: String(sender.tag - 1))
         }
@@ -272,10 +277,10 @@ class ViewController: UIViewController {
         
         //Only variably reduce the amount of decimal digits to show until a decimal point has been added
         if(!hasDecimal){
-            numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
+            numberFormatter?.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
         }
         
-        return numberFormatter.string(from: numToFmt)!
+        return numberFormatter!.string(from: numToFmt)!
     }
     
     private func toParseableStr(str: String) -> String{
