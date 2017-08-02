@@ -50,6 +50,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnEquals: UIButton!
     @IBOutlet weak var btnClear: UIButton!
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: <#T##String?#>, bundle: <#T##Bundle?#>)
+        
+        numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBAction func numbers(_ sender: UIButton) {
         if(label.text! == "0" || label.text! == ERROR_MESSAGE || needSecondNum){
             label.text = String(sender.tag - 1)
@@ -252,10 +264,6 @@ class ViewController: UIViewController {
         
         label.addGestureRecognizer(tap)
         tap.delegate = self as? UIGestureRecognizerDelegate
-        
-        numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT
     }
     
     private func formatNumber(numStr: String) -> String{
