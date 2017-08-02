@@ -51,9 +51,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnEquals: UIButton!
     @IBOutlet weak var btnClear: UIButton!
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: <#T##String?#>, bundle: <#T##Bundle?#>)
-        
+    init() {
         numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT
@@ -61,6 +59,7 @@ class ViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        super.init(coder: <#T##NSCoder#>)
     }
     
     @IBAction func numbers(_ sender: UIButton) {
