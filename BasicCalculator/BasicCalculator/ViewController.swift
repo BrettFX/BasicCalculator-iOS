@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     var mem: Double = 0
     var operation:String = ""
     var needSecondNum:Bool = false
+    var hasDecimal: Bool = false
     
     var numberFormatter: NumberFormatter
     
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
                 break
                 
             case DECIMAL_BUTTON:
-                let hasDecimal: Bool = (label.text?.contains("."))!
+                hasDecimal = (label.text?.contains("."))!
                 
                 if(needSecondNum || label.text! == ERROR_MESSAGE){
                     label.text! = "0."
@@ -269,7 +270,11 @@ class ViewController: UIViewController {
     private func formatNumber(numStr: String) -> String{
         let numDbl: Double = Double(toParseableStr(str: numStr))!
         let numToFmt: NSNumber = NSNumber(value: numDbl)
-        numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
+        
+        //Only variably reduce the amount of decimal digits to show until a decimal point has been added
+        if(!hasDecimal){
+            numberFormatter.maximumFractionDigits = MAX_CHAR_COUNT - numStr.characters.count
+        }
         
         return numberFormatter.string(from: numToFmt)!
     }
