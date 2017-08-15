@@ -133,7 +133,7 @@ class ViewController: UIViewController {
                 break
             }
             
-            if(sender.tag != PERCENT_BUTTON){
+            if(sender.tag != PERCENT_BUTTON && needSecondNum){
                 mem = Double(toParseableStr(str: label.text!))!
             }
             
